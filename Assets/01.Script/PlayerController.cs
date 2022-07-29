@@ -33,8 +33,9 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        print(State);
         print(raycastHit);
-        OnMouseEvent();
+        OnMouseEvent_IdleMoving();
 
         switch (State)
         {
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Die:
                 UpdateDie();
-                break;
+                break;  
         }
     }
 
