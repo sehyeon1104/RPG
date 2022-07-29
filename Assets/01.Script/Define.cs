@@ -6,7 +6,7 @@ public class Define
 {
     public enum Layer
     {
-        monster = 6,
+        Monster = 6,
         Ground = 7,
         Block = 8
     }

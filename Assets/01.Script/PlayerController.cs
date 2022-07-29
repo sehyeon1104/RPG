@@ -19,12 +19,35 @@ public class PlayerController : MonoBehaviour
     float moveSpeed = 10f;
     Vector3 destPos;
 
+    int layerMask = ((1 << (int)Define.Layer.Monster) | (1 << (int)Define.Layer.Ground));
+
+    //공격하는 타겟
+    GameObject lockTarget;
+//
+    bool stopSkill = false;
     public PlayerState State
     {
         get => state;
         set
         {
             state = value;
+            Animator anim = GetComponent<Animator>();
+            switch(State)
+            {
+                case PlayerState.Die:
+                    break;
+                    case PlayerState.Idle:
+                    anim.CrossFade("WAIT", 0.1f);
+                    break;
+                case PlayerState.Moving:
+                    anim.CrossFade("RUN", 0.1f);
+                    break;
+                    case PlayerState.Skill:
+                    anim.CrossFade("ATTACK", 0.1f, -1, 0);
+                    break;
+
+
+            }
         }
     }
     private void Start()
@@ -33,8 +56,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        print(State);
-        print(raycastHit);
+      
         OnMouseEvent_IdleMoving();
 
         switch (State)
@@ -100,13 +122,13 @@ public class PlayerController : MonoBehaviour
       switch(State)
         {
             case PlayerState.Idle:
-
+                OnMouseEvent_IdleMoving();
                 break;
             case PlayerState.Moving:
                 OnMouseEvent_IdleMoving();
                 break;
             case PlayerState.Skill:
-
+                
                 break;
             case PlayerState.Die:
                 break;
@@ -116,25 +138,30 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-         raycastHit = Physics.Raycast(ray, out hit,100f,LayerMask.GetMask("Ground"));
+         raycastHit = Physics.Raycast(ray, out hit,100f,layerMask);
 
         if(Input.GetMouseButtonDown(0))
         {
             if(raycastHit)
             {
                 destPos = hit.point;
-                state = PlayerState.Moving;
+                State = PlayerState.Moving;
+                stopSkill = false;
+                if (hit.collider.gameObject.layer == (int)Define.Layer.Monster)
+                    lockTarget = hit.collider.gameObject;
+                else
+                    lockTarget = null;
             }
         }
         if(Input.GetMouseButton(0))
         {
-            if(raycastHit)
+            if(lockTarget ==null&& raycastHit)
             {
                 destPos=hit.point;
             }
         if(Input.GetMouseButtonUp(0))
         {
-
+                stopSkill = true;
         }
         }
     }
