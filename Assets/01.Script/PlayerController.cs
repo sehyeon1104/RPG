@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    bool raycastHit;
    public enum PlayerState
     {
         Die,
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        print(raycastHit);
         OnMouseEvent();
 
         switch (State)
@@ -113,7 +115,7 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        bool raycastHit = Physics.Raycast(ray, out hit,100f,LayerMask.GetMask("Ground"));
+         raycastHit = Physics.Raycast(ray, out hit,100f,LayerMask.GetMask("Ground"));
 
         if(Input.GetMouseButtonDown(0))
         {
