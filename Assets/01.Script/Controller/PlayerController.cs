@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     PlayerState state = PlayerState.Idle;
 
-    float moveSpeed = 10f;
+    PlayerStat stat;
     Vector3 destPos;
 
     int layerMask = ((1 << (int)Define.Layer.Monster) | (1 << (int)Define.Layer.Ground));
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
-        
+        stat = GetComponent<PlayerStat>();
     }
     private void Update()
     {
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
-            float moveDDist = Mathf.Clamp(moveSpeed*Time.deltaTime,0,dir.magnitude);
+            float moveDDist = Mathf.Clamp(4f*Time.deltaTime,0,dir.magnitude);
             transform.position += dir.normalized * moveDDist;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
         }
