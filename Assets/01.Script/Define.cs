@@ -10,4 +10,9 @@ public class Define
         Ground = 7,
         Block = 8
     }
+    public enum CameraMode
+    {
+        Quaterview,
+
+    }
 }
