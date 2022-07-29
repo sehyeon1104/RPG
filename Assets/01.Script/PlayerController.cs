@@ -56,8 +56,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-      
-        OnMouseEvent_IdleMoving();
+
+        OnMouseEvent();
 
         switch (State)
         {
@@ -83,11 +83,26 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateSkill()
     {
-       
+        if (lockTarget != null)
+        {
+            Vector3 dir =lockTarget.transform.position-transform.position;
+            Quaternion quat = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, quat, 20f * Time.deltaTime);
+        }
     }
 
     private void UpdateMoving()
     {
+        if(lockTarget != null)
+        {
+            destPos = lockTarget.transform.position;
+            float distance = (destPos - transform.position).magnitude;
+            if (distance <= 1f)
+            {
+                State = PlayerState.Skill;
+                return;
+            }
+        }
         Vector3 dir = destPos - transform.position;
         if(dir.sqrMagnitude<0.1f*0.1f)
         {
@@ -163,6 +178,17 @@ public class PlayerController : MonoBehaviour
         {
                 stopSkill = true;
         }
+        }
+    }
+    public void OnHitEvent()
+    {
+       if(stopSkill)
+        {
+            State = PlayerState.Idle;
+        }
+        else
+        {
+            State = PlayerState.Skill;
         }
     }
 }
