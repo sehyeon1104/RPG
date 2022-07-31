@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
                 OnMouseEvent_IdleMoving();
                 break;
             case PlayerState.Skill:
-                
+                OnMouseEvent_IdleMoving();
                 break;
             case PlayerState.Die:
                 break;
@@ -185,6 +185,7 @@ public class PlayerController : MonoBehaviour
        if(stopSkill)
         {
             State = PlayerState.Idle;
+            
         }
         else
         {
