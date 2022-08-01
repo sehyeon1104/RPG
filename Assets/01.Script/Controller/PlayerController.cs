@@ -185,10 +185,6 @@ public class PlayerController : MonoBehaviour
     }
     public void OnHitEvent()
     {
-  if(stats.HP<=0 )
-        {
-            stat.OnDead(stats);
-        }
         print("OnhitEvent");
         if(lockTarget!=null)
         {

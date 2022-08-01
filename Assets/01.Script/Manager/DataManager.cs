@@ -18,12 +18,12 @@ public interface ILoader<Key,Value>
 [serializable]
 public class StatList : ILoader<int , StatData>
 {
-    public List<StatData> states = new List<StatData> ();
+    public List<StatData> stats = new List<StatData> ();
   
     public Dictionary<int, StatData> MakeDict()
     {
         Dictionary<int, StatData> dict = new Dictionary<int, StatData>();
-        foreach (StatData stat in states)
+        foreach (StatData stat in stats)
         {
             dict.Add(stat.level, stat);
         }
