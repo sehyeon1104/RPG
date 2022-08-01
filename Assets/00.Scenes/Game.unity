@@ -11788,7 +11788,7 @@ MonoBehaviour:
   maxHp: 0
   attackPower: 0
   defense: 0
-  moveSpeed: 0
+  moveSpeed: 10
   exp: 0
   gold: 0
 --- !u!1001 &1723628585

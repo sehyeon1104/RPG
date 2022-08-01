@@ -11,7 +11,7 @@ public class MonsterController : BaseController
     float scanRange = 10f;
 
     [SerializeField]
-    float attackRange = 10f;
+    float attackRange = 2f;
 
     [SerializeField]
     GameObject player = null;
@@ -58,16 +58,31 @@ public class MonsterController : BaseController
                     agent.SetDestination(transform.position);
 
                 State = MonsterState.Skill;
-                return;
+                return; 
             }
-            else if(distance>=attackRange)
-            {
-                target = null;
-                State = MonsterState.Idle;
-                return;
-            }
+
+
+           
         }
         Vector3 dir = destPos - transform.position;
+        if(dir.magnitude >= attackRange)
+        {
+            target = null;
+            if(agent)
+            {
+                agent.SetDestination(transform.position);
+
+            }
+          
+        }
+        else
+        {
+            if(agent==null)
+            {
+                return;
+            }
+            State = MonsterState.Moving;
+        }
         if(dir.magnitude<0.1f)
         {
             State = MonsterState.Idle;
