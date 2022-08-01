@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        print(stopSkill);
+      
         OnMouseEvent();
 
         switch (State)

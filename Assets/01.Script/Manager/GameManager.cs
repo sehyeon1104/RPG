@@ -33,7 +33,7 @@ public class GameManager
         {
             case Define.MosterObject.Knight:
                 if (monsters.Contains(go))
-                {
+                {   
                     monsters.Remove(go);
                     if (OnSpawnEvent != null)
                         OnSpawnEvent.Invoke(-1);

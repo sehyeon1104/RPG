@@ -41,7 +41,7 @@ public class SpawningPool : MonoBehaviour
         reserveCount++;
         yield return new WaitForSeconds(Random.Range(1f,spawnTime));
 
-        GameObject obj = Managers.Game.Spawn(Define.MosterObject.Knight, "knight");
+        GameObject obj = Managers.Game.Spawn(Define.MosterObject.Knight, "Knight");
         NavMeshAgent agent = obj.GetComponent<NavMeshAgent>();
 
         Vector3 randPos;

@@ -31,8 +31,8 @@ public class Managers : MonoBehaviour
     {
         if(instance == null)
         {
+            
             GameObject go = GameObject.Find("@Managers");
-            {
                 if(go != null)
                 {
                     go = new GameObject { name = "@Managers" };
@@ -43,7 +43,7 @@ public class Managers : MonoBehaviour
                 instance=go.GetComponent<Managers>();
 
                 //각 매니저의 초기화
-            }
+            
         }
     }
     public static void Clear()
