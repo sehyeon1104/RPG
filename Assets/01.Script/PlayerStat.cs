@@ -18,7 +18,7 @@ public class PlayerStat : Stat
         maxHp = 100;
         attackPower = 100;
         defense = 5;
-        moveSpeed = 5f;
+        moveSpeed = 10f;
         exp = 0;
         gold = 0;
     }
