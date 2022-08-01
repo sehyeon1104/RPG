@@ -15,4 +15,9 @@ public class Define
         Quaterview,
 
     }
+    public enum MosterObject
+    {
+        Unknown,
+        Knight,
+    }
 }
