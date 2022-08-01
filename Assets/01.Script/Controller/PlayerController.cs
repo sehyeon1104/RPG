@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateMoving()
     {
+
         if(lockTarget != null)
         {
             destPos = lockTarget.transform.position;
@@ -104,6 +105,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         Vector3 dir = destPos - transform.position;
+        dir.y = 0;
         if(dir.sqrMagnitude<0.1f*0.1f)
         {
             State = PlayerState.Idle;
