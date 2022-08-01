@@ -28,6 +28,7 @@ public class Stat : MonoBehaviour
     public float MoveSpeed { get => moveSpeed; set { moveSpeed = value; } }
     void Start()
     {
+        attack = 10;
         level = 1;
         hp = 100;
         maxHp = 100;

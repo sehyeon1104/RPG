@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     PlayerStat stat;
     Vector3 destPos;
-
+    Stat stats;
     int layerMask = ((1 << (int)Define.Layer.Monster) | (1 << (int)Define.Layer.Ground));
 
     //공격하는 타겟
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        stats = GetComponent<Stat>();
         stat = GetComponent<PlayerStat>();
     }
     private void Update()
@@ -184,6 +185,10 @@ public class PlayerController : MonoBehaviour
     }
     public void OnHitEvent()
     {
+  if(stats.HP<=0 )
+        {
+            stat.OnDead(stats);
+        }
         print("OnhitEvent");
         if(lockTarget!=null)
         {
@@ -200,4 +205,5 @@ public class PlayerController : MonoBehaviour
             State = PlayerState.Skill;
         }
     }
+
 }

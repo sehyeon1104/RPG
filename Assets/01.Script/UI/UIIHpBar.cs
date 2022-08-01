@@ -12,7 +12,7 @@ public class UIIHpBar : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
         Transform parent = transform.parent;
         transform.position = parent.position + Vector3.up * parent.GetComponent<Collider>().bounds.size.y;
         transform.rotation =Camera.main.transform.rotation;

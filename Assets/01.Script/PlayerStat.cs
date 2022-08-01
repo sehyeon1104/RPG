@@ -13,6 +13,7 @@ public class PlayerStat : Stat
     public int Gold { get { return gold; } set { gold = value; } }
     void Start()
     {
+        attack = 10;
         level = 1;
         hp = 100;
         maxHp = 100;
@@ -23,7 +24,7 @@ public class PlayerStat : Stat
         gold = 0;
     }
 
-   protected virtual void OnDead(Stat attacker)
+   public virtual void OnDead(Stat attacker)
     {
         Debug.Log("Player Dead");
 
