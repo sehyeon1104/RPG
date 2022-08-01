@@ -113,6 +113,7 @@ public class MonsterController : BaseController
         {
             //е╦╟ы ╩Себ
             Stat targetStat = target.GetComponent<Stat>();
+            targetStat.OnAttacked(stat);
 
             if(targetStat.HP>0)
             {

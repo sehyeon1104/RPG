@@ -23,7 +23,15 @@ public class PlayerStat : Stat
         gold = 0;
     }
 
-    // Update is called once per frame
+   protected virtual void OnDead(Stat attacker)
+    {
+        Debug.Log("Player Dead");
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
+    }
     void Update()
     {
         

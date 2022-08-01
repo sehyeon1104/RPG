@@ -184,6 +184,12 @@ public class PlayerController : MonoBehaviour
     }
     public void OnHitEvent()
     {
+        print("OnhitEvent");
+        if(lockTarget!=null)
+        {
+            Stat targetStat =lockTarget.GetComponent<Stat>();
+            targetStat.OnAttacked(stat);
+        }
        if(stopSkill)
         {
             State = PlayerState.Idle;
